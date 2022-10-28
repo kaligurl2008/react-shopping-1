@@ -27,7 +27,7 @@ function Homepage() {
 
   return (
     <div>
-        <button onClick={fetchProducts}>Fetch Products</button>
+        {/*<button onClick={fetchProducts}>Fetch Products</button>*/}
         <div className = "prod-container">
             {
             products.map (item => {
