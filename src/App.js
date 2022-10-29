@@ -38,7 +38,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
       <Routes>
-        <Route path = '/products' element={<Homepage />} />
+        <Route path = '/' element={<Homepage />} />
         <Route path = '/cart' element={<Cart />} />
       </Routes>
       </BrowserRouter>
