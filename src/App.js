@@ -4,6 +4,8 @@ import './App.css';
 import Product from './components/Product/Product';
 import Homepage from './components/Homepage/Homepage';
 import Cart from './components/Cart/Cart';
+import ProductDetail from './components/ProductDetail/ProductDetail';
+
 
 function App() {
 
@@ -38,8 +40,10 @@ function App() {
     <div className="App">
       <BrowserRouter>
       <Routes>
-        <Route path = '/' element={<Homepage />} />
+        <Route exact path = '/' element={<Homepage />} />
         <Route path = '/cart' element={<Cart />} />
+        <Route path = '/detail' element={<ProductDetail />} />
+
       </Routes>
       </BrowserRouter>
     
