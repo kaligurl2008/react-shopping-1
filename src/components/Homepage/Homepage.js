@@ -32,6 +32,7 @@ function Homepage() {
             {
             products.map (item => {
                 return <Product key = {item.id}
+                            id = {item.id}
                             title = {item.title}
                             price = {item.price}
                             cateogry = {item.cateogry}
