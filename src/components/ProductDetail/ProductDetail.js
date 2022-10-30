@@ -23,7 +23,16 @@ function ProductDetail() {
   }, [])
 
   return (
-    <div>Product Detail</div>
+    <div className='product-card'>
+      <img src={selectedProduct?.image} alt={selectedProduct?.title} />
+      <div className='detail-txt'>
+        <h3>{selectedProduct?.title}</h3>
+        <h3>$ {selectedProduct?.price}</h3>
+        <h4>Description</h4>
+        <p>{selectedProduct?.description}</p>
+        <button>Add To Cart</button>
+      </div>
+    </div>
   )
 }
 
