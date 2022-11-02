@@ -3,7 +3,7 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 import './ProductDetail.css';
 
-function ProductDetail() {
+function ProductDetail(props) {
 
   console.log('need the param');
   const params = useParams();
@@ -30,7 +30,7 @@ function ProductDetail() {
         <h3>$ {selectedProduct?.price}</h3>
         <h4>Description</h4>
         <p>{selectedProduct?.description}</p>
-        <button>Add To Cart</button>
+        <button onClick = {() =>props.addProductToCart(selectedProduct)}>Add To Cart</button>
       </div>
     </div>
   )
