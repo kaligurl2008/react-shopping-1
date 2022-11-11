@@ -17,9 +17,52 @@ function App() {
   // create function used by ProductDetail to add item to cart
   function addProductToCart (productToAdd) {
     console.log(productToAdd);
+    let newCart = [];
+    //if productToAdd is NOT in car, add with a qty of 1
+    //else increment qty of object already in the cart
+
+    //look for this product in cartProducts using find
+    const match = cartProducts.find(prod => prod.id === productToAdd.id)
+    console.log('match', match);
+    //if not there match will be undefined which is "falsy"
+    if(!match){
+      console.log('first buy');
+      //add to cartProducts with a qty of 1
+      //keep everything already in state
+      newCart = [...cartProducts, {...productToAdd, quantity: 1}];
+      console.log('new cart', newCart);
+      //replace state with this new cart
+      setCartProducts(newCart);
+
+
+
+    }
+    else{
+      console.log('increase qty');
+      updateCartQuantity(match, true);
+    }
     //need to add this product to cart products
-    setCartProducts([...cartProducts, productToAdd])      //three dots means to copy
+    //spread operator
+    //setCartProducts([...cartProducts, productToAdd])      //three dots means to copy
   }
+
+  //function to increase or decrease qty of a product
+  function updateCartQuantity(productToChange, increase){
+    let newqty = productToChange.quantity;
+    if (increase){
+      newqty++;
+    }
+    else{
+      newqty--;
+    }
+    //create a new cart with this new qty
+    let newCart = cartProducts.map(prod => prod.id === productToChange.id ? 
+      {...productToChange, quantity: newqty} 
+      : prod )
+      //replace the state
+      setCartProducts(newCart)
+  }
+
 
 
   //create function to remove from cart
@@ -66,7 +109,9 @@ function App() {
       <Routes>
         <Route exact path = '/products' element={<Homepage />} />
         <Route path = '/products/:id' element={<ProductDetail addProductToCart ={addProductToCart}/>} />
-        <Route path = '/cart' element={<Cart cartProducts={cartProducts}  removeFromCart={removeFromCart}/>} />
+        <Route path = '/cart' element={<Cart cartProducts={cartProducts}  
+        removeFromCart={removeFromCart}
+        updateCartQuantity={updateCartQuantity}/>} />
         <Route path='*' element={<Navigate to='/products' replace />} />
       </Routes>
       {/*footer goes here*/}
