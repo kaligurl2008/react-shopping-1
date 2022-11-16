@@ -41,7 +41,7 @@ function Cart(props) {
 
         )
       }
-      {props.cartProducts.length > 0 && <h3>TOTAL: ${cartTotal()}</h3>}
+      {props.cartProducts.length > 0 && <h3>TOTAL: ${cartTotal().toFixed(2)}</h3>}
     </div>
   )
 }

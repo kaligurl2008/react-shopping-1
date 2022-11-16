@@ -3,7 +3,7 @@ import React from 'react'
 import Product from '../Product/Product';
 import './Homepage.css';
 
-function Homepage() {
+function Homepage(props) {
 
     const [products, setProducts] = React.useState([]);
     //create function to get to the products
@@ -30,7 +30,12 @@ function Homepage() {
         {/*<button onClick={fetchProducts}>Fetch Products</button>*/}
         <div className = "prod-container">
             {
-            products.map (item => {
+            products.filter(
+                item => props.productSearchValue === ""?
+                item:
+                item.title.toLowerCase().includes(props.productSearchValue.toLowerCase()) ? item: null
+            )            
+            .map (item => {
                 return <Product key = {item.id}
                             id = {item.id}
                             title = {item.title}

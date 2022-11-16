@@ -14,6 +14,9 @@ function App() {
   //create state to store all products added to cart
   const [cartProducts, setCartProducts] = React.useState([]);
 
+  //create state for search value to send to Homepage
+  const [productSearchValue, setProductSearchValue] = React.useState("");
+
   // create function used by ProductDetail to add item to cart
   function addProductToCart (productToAdd) {
     console.log(productToAdd);
@@ -75,6 +78,12 @@ function App() {
     //now make this the new state
     setCartProducts(newCartProducts);
   }
+
+  function handleProductSearch(searchInput){
+    console.log("in app ", searchInput);
+    //set the state
+    setProductSearchValue(searchInput);
+  }
   /* const product1 = {
     "id": 1,
     "title": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
@@ -105,9 +114,10 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-      <Navbar />
+      <Navbar handleProductSearch={handleProductSearch} />
       <Routes>
-        <Route exact path = '/products' element={<Homepage />} />
+        <Route exact path = '/products' element={<Homepage 
+                                          productSearchValue={productSearchValue} />} />
         <Route path = '/products/:id' element={<ProductDetail addProductToCart ={addProductToCart}/>} />
         <Route path = '/cart' element={<Cart cartProducts={cartProducts}  
         removeFromCart={removeFromCart}
